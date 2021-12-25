@@ -24,7 +24,7 @@ public class TestSearchClient extends BaseTest {
     public void testSearchIssues() throws RestException, IOException, ExecutionException, InterruptedException {
         JqlSearchBean jsb = new JqlSearchBean();
         JqlBuilder builder = new JqlBuilder();
-        String jql = builder.addCondition(EField.PROJECT, EOperator.EQUALS, "DEMO")
+        String jql = builder.addCondition(EField.PROJECT, EOperator.EQUALS, PROJECT_TO_SEARCH)
                 .and().addCondition(EField.STATUS, EOperator.EQUALS, STATUS_OPEN)
                 .orderBy(SortOrder.ASC, EField.CREATED);
         jsb.setJql(jql);
@@ -33,7 +33,7 @@ public class TestSearchClient extends BaseTest {
         Future<JqlSearchResult> future = jiraRestClient.getSearchClient().searchIssues(jsb);
         JqlSearchResult jqlSearchResult = future.get();
         Assert.assertNotNull(jqlSearchResult);
-        Assert.assertEquals(jqlSearchResult.getIssues().size(), jqlSearchResult.getTotal());
+        Assert.assertEquals(jqlSearchResult.getIssues().size(), Math.min(jqlSearchResult.getTotal(), 50));
         Assert.assertTrue(jqlSearchResult.getTotal() > 0);
 
 
@@ -43,7 +43,7 @@ public class TestSearchClient extends BaseTest {
     public void testSearchIssueWithMultipleValues() throws IOException, RestException, ExecutionException, InterruptedException {
         JqlSearchBean jsb = new JqlSearchBean();
         JqlBuilder builder = new JqlBuilder();
-        String jql = builder.addCondition(EField.PROJECT, EOperator.EQUALS, "DEMO")
+        String jql = builder.addCondition(EField.PROJECT, EOperator.EQUALS, PROJECT_TO_SEARCH)
                 .and().addCondition(EField.STATUS, EOperator.IN, STATUS_OPEN, STATUS_IN_PROGRESS)
                 .orderBy(SortOrder.ASC, EField.CREATED);
         jsb.setJql(jql);
@@ -52,7 +52,7 @@ public class TestSearchClient extends BaseTest {
         Future<JqlSearchResult> future = jiraRestClient.getSearchClient().searchIssues(jsb);
         JqlSearchResult jqlSearchResult = future.get();
         Assert.assertNotNull(jqlSearchResult);
-        Assert.assertEquals(jqlSearchResult.getIssues().size(), jqlSearchResult.getTotal());
+        Assert.assertEquals(jqlSearchResult.getIssues().size(), Math.min(jqlSearchResult.getTotal(), 50));
         Assert.assertTrue(jqlSearchResult.getTotal() > 0);
 
     }
@@ -61,13 +61,13 @@ public class TestSearchClient extends BaseTest {
     public void testCountIssues() throws ExecutionException, InterruptedException, IOException, RestException {
         JqlSearchBean jsb = new JqlSearchBean();
         JqlBuilder builder = new JqlBuilder();
-        String jql = builder.addCondition(EField.PROJECT, EOperator.EQUALS, "EXPORT").build();
+        String jql = builder.addCondition(EField.PROJECT, EOperator.EQUALS, PROJECT_TO_SEARCH).build();
         jsb.setJql(jql);
         jsb.addField(EField.ISSUE_KEY, EField.STATUS, EField.DUE, EField.ISSUE_TYPE);
         Future<JqlSearchResult> future = jiraRestClient.getSearchClient().searchIssues(jsb);
         JqlSearchResult jqlSearchResult = future.get();
         Assert.assertNotNull(jqlSearchResult);
-        Assert.assertEquals(jqlSearchResult.getIssues().size(), jqlSearchResult.getTotal());
+        Assert.assertEquals(jqlSearchResult.getIssues().size(), Math.min(jqlSearchResult.getTotal(), 50));
         Assert.assertTrue(jqlSearchResult.getTotal() > 0);
     }
 
@@ -75,10 +75,10 @@ public class TestSearchClient extends BaseTest {
     @Test
     public void testCreateFilter() {
         FilterBean filter = new FilterBean();
-        filter.setName("Demo Project");
-        filter.setDescription("A Filter for the Demo Project");
+        filter.setName(PROJECT_TO_SEARCH+" Project");
+        filter.setDescription("A Filter for the "+PROJECT_TO_SEARCH+" Project");
         filter.setFavourite(Boolean.TRUE);
-        filter.setJql("project = DEMO");
+        filter.setJql("project = "+PROJECT_TO_SEARCH);
         final Future<FilterBean> future = jiraRestClient.getSearchClient().createSearchFilter(filter);
         final FilterBean filterBean;
         try {
@@ -100,11 +100,12 @@ public class TestSearchClient extends BaseTest {
         final List<FilterBean> filterBeans = future.get();
         Assert.assertNotNull(filterBeans);
         Assert.assertFalse(filterBeans.isEmpty());
+        String filterId = filterBeans.get(0).getId();
+        testGetFilterById(filterId);
     }
 
-    @Test
-    public void testGetFilterById() throws ExecutionException, InterruptedException {
-        Future<FilterBean> future = jiraRestClient.getSearchClient().getFilterById("10000");
+    private void testGetFilterById(String id) throws ExecutionException, InterruptedException {
+        Future<FilterBean> future = jiraRestClient.getSearchClient().getFilterById(id);
         FilterBean filterBean = future.get();
         Assert.assertNotNull(filterBean);
     }

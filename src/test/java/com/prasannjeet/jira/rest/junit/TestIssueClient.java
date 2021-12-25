@@ -158,6 +158,9 @@ public class TestIssueClient extends BaseTest {
         Assert.assertNotNull(issue);
         Assert.assertEquals(ISSUEKEY_TO_SEARCH, issue.getKey());
         String environment = issue.getFields().getEnvironment();
+        if (environment == null) {
+            return;
+        }
         String newEnviroment = environment + NEW_LINE + NEW_LINE + issue.getSelf();
         IssueUpdate issueUpdate = new IssueUpdate();
         Map<String, List<FieldOperation>> update = issueUpdate.getUpdate();
@@ -183,9 +186,12 @@ public class TestIssueClient extends BaseTest {
     @Test
     public void testSaveAttachment() throws IOException, RestException, ExecutionException, InterruptedException {
         ClassLoader classLoader = this.getClass().getClassLoader();
-        File file = new File(Objects.requireNonNull(classLoader.getResource("fields.json")).getFile());
-        File file2  = new File(Objects.requireNonNull(classLoader.getResource("customfields.json")).getFile());
-        if(file.exists() == true){
+        String path = new File(System.getProperty("user.dir")) + File.separator;
+        String path1 = path + FIELD_FILE_NAME;
+        String path2 = path + CUSTOM_FILE_NAME;
+        File file = new File(path1);
+        File file2  = new File(path2);
+        if(file.exists()){
             Future<List<AttachmentBean>> listFuture = jiraRestClient.getIssueClient().saveAttachmentToIssue(ISSUEKEY_TO_SEARCH, file, file2);
             List<AttachmentBean> attachmentBeen = listFuture.get();
             Assert.assertFalse(attachmentBeen.isEmpty());

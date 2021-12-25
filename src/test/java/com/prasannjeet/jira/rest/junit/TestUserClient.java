@@ -38,7 +38,7 @@ public class TestUserClient extends BaseTest {
         Future<List<UserBean>> future = jiraRestClient.getUserClient().getAssignableUserForProject(PROJECT_TO_SEARCH, null, null);
         final List<UserBean> userBeans = future.get();
         Assert.assertNotNull(userBeans);
-        Assert.assertEquals(2, userBeans.size());
+        Assert.assertTrue(userBeans.size() >= 1);
     }
 
     @Test
@@ -46,7 +46,7 @@ public class TestUserClient extends BaseTest {
         Future<List<UserBean>> future = jiraRestClient.getUserClient().getAssignableUsersForIssue(ISSUEKEY_TO_SEARCH, null, null);
         final List<UserBean> userBeans = future.get();
         Assert.assertNotNull(userBeans);
-        Assert.assertEquals(2, userBeans.size());
+        Assert.assertTrue(userBeans.size() >= 1);
     }
 
     @Test

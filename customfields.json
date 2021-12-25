@@ -1,0 +1,11 @@
+{
+  "id": 100,
+  "name": "Custom Field",
+  "type": "text",
+  "required": false,
+  "default": "",
+  "description": "",
+  "help": "",
+  "options": [],
+  "order": 0
+}

@@ -26,10 +26,10 @@ import java.util.concurrent.Future;
  */
 public class TestSystemClient extends BaseTest {
 
-    private static final int DEFAULT_NUMBER_OF_ISSUETYPES = 6;
-    private static final int DEFAULT_NUMBER_OF_STATES = 5;
+    private static final int DEFAULT_NUMBER_OF_ISSUETYPES = 53;
+    private static final int DEFAULT_NUMBER_OF_STATES = 111;
     private static final int DEFAULT_NUMBER_OF_PRIORITIES = 5;
-    private static final int DEFAULT_NUMBER_OF_FIELDS = 40;
+    private static final int DEFAULT_NUMBER_OF_FIELDS = 42;
     private static final int DEFAULT_UPLOAD_LIMIT = 10485760;
     private static final int DEFAULT_WORKING_HOURS_PER_DAY = 8;
 
@@ -102,6 +102,9 @@ public class TestSystemClient extends BaseTest {
 
     @Test
     public void testCreateCustomField() throws ExecutionException, InterruptedException {
+        if (!HAS_CREATE_PERMISSION) {
+            return;
+        }
         CreateFieldBean createFieldBean = new CreateFieldBean();
         createFieldBean.setName("New Custom Field");
         createFieldBean.setDescription("Custom field for picking groups");
