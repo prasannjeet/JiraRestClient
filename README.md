@@ -1,10 +1,10 @@
-***REMOVED*** JiraRestClient
+#JiraRestClient
 
 A simple JAVA Client to access the [JIRA&copy; REST-API](https://docs.atlassian.com/jira/REST/cloud/).
 Originally forked from this [Github-Repo](https://github.com/micromata/JiraRestClient).
 
 
-***REMOVED******REMOVED*** Usage 
+#Usage 
 
 Everything you need is a ExecutorService (java.util.concurrent.ExecutorService) for Thread-Pooling.
 
@@ -25,7 +25,7 @@ After you create the JiraRestClient and connecting to your JIRA&copy;, you can g
 * SearchClient - for jql search
 * SystemClient - every global Info form the Jira. You can get Status, Priority, IssueTypes Informations.
 
-***REMOVED******REMOVED*** Tests 
+#Tests 
 
 For more Information about usage and some Code Snippets look into the Unit-Tests inside the project. 
 
