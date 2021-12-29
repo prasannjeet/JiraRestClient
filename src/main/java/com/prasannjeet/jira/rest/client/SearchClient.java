@@ -18,7 +18,6 @@ public interface SearchClient {
      * Performs an extended search for issues given by the project.
      *
      * @return list of issues
-     * @throws com.prasannjeet.jira.rest.core.util.RestException
      */
     Future<JqlSearchResult> searchIssues(JqlSearchBean jsb);
 

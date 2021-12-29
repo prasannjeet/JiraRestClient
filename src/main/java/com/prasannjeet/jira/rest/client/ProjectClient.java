@@ -11,7 +11,7 @@ import java.util.concurrent.Future;
 
 /**
  * The IssueClient provides all Informations for Jira Issues
- * <p/>
+ *
  * User: Christian Schulze c.schulze@micromata.de
  */
 public interface ProjectClient {
@@ -21,7 +21,6 @@ public interface ProjectClient {
      * Returns a list of all projects the logged in User can see..
      *
      * @return list of projects
-     * @throws RestException
      */
     Future<List<ProjectBean>> getAllProjects();
 
@@ -30,7 +29,6 @@ public interface ProjectClient {
      *
      * @param projectKey = the project key
      * @return all informations for the project
-     * @throws RestException
      */
     Future<ProjectBean> getProjectByKey(final String projectKey);
 
@@ -39,7 +37,6 @@ public interface ProjectClient {
      *
      * @param projectKey = the project key
      * @return list of versions
-     * @throws RestException
      */
     Future<List<VersionBean>> getProjectVersions(final String projectKey);
 
@@ -49,7 +46,6 @@ public interface ProjectClient {
      *
      * @param projectKey = the project key
      * @return list of components
-     * @throws RestException
      */
     Future<List<ComponentBean>> getProjectComponents(final String projectKey);
 

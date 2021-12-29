@@ -22,8 +22,6 @@ public interface SystemClient {
      * Return the Configuration of the remote Jira Instanz
      *
      * @return ConfigurationBean
-     * @throws RestException
-     * @throws IOException
      */
     Future<ConfigurationBean> getConfiguration();
 
@@ -31,7 +29,6 @@ public interface SystemClient {
      * Returns a list of all issue types visible to the connected client.
      *
      * @return list of issue types
-     * @throws com.prasannjeet.jira.rest.core.util.RestException
      */
     Future<List<IssuetypeBean>> getIssueTypes();
 
@@ -39,7 +36,6 @@ public interface SystemClient {
      * Returns a list of all statuses.
      *
      * @return list of statuses
-     * @throws RestException
      */
     Future<List<StatusBean>> getStates();
 
@@ -48,7 +44,6 @@ public interface SystemClient {
      * Returns a List of all Priority Object from the Remote Jira.
      *
      * @return
-     * @throws RestException
      */
     Future<List<PriorityBean>> getPriorities();
 

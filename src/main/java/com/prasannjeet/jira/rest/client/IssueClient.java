@@ -16,12 +16,11 @@ import java.util.concurrent.Future;
  * The IssueClient provides all Informations for Jira Issues
  */
 public interface IssueClient {
+
     /**
      * Create a new issue
-     *
      * @param issue = the issue
      * @return IssueResponse
-     * @throws com.prasannjeet.jira.rest.core.util.RestException
      */
     Future<IssueResponse> createIssue(IssueBean issue);
 
@@ -30,24 +29,25 @@ public interface IssueClient {
      *
      * @param issueKey = issue key
      * @return all informations for the issue or null if the issue did not exist
-     * @throws RestException
      */
     Future<IssueBean> getIssueByKey(String issueKey);
 
     /**
      * update Field of an Issue
      *
-     *
+     * @param issueKey
+     * @param issueUpdate
+     * @return
      */
     Future<IssueBean> updateIssue(String issueKey, IssueUpdate issueUpdate);
 
     /**
      * Return a Issue with the given Field and Expand Fields.
      *
-     * @param issueKey The IssueKey
-     * @param fields The field you want to return.
-     * @param expand The Field which must expand.
-     * @return IssueBean or null if the issue did not exist
+     * @param issueKey
+     * @param fields
+     * @param expand
+     * @return
      */
     Future<IssueBean> getIssueByKey(String issueKey, List<String> fields, List<String> expand);
 
@@ -56,7 +56,6 @@ public interface IssueClient {
      *
      * @param uri = the uri of the resource
      * @return byte[] or null
-     * @throws RestException
      */
     Future<Byte[]> getAttachment(URI uri);
 
@@ -85,7 +84,7 @@ public interface IssueClient {
 
     /**
      * Returns true if the worklog is successfully transfered to the Issue.
-     * <p/>
+     *
      * <p>This method is for merging log time for an Issue.
      *
      * @param issueKey = the issue key
@@ -111,7 +110,6 @@ public interface IssueClient {
      *
      * @param issueKey = the issue key
      * @return List of TransitionBean
-     * @throws RestException
      */
     Future<List<TransitionBean>> getIssueTransitionsByKey(String issueKey);
 
@@ -120,7 +118,6 @@ public interface IssueClient {
      *
      * @param issueKey = issue key
      * @return summarized representation of all comments
-     * @throws com.prasannjeet.jira.rest.core.util.RestException
      */
     Future<CommentsBean> getCommentsByIssue(String issueKey);
 

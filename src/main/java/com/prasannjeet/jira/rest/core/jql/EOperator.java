@@ -41,32 +41,32 @@ public enum EOperator {
     NOT_EQUALS("!="),
 
     /**
-     * The ">" operator is used to search for issues where the value of the specified field is greater than the specified value.
-     * Cannot be used with text fields. Note that the ">" operator can only be used with fields which support ordering
+     * The "&gt;" operator is used to search for issues where the value of the specified field is greater than the specified value.
+     * Cannot be used with text fields. Note that the "&gt;" operator can only be used with fields which support ordering
      * (e.g. date fields and version fields). To see a field's supported operators, check the individual field reference.
      */
-    GREATER_THAN(">"),
+    GREATER_THAN("&gt;"),
 
     /**
-     * The ">=" operator is used to search for issues where the value of the specified field is greater than or equal to the
-     * specified value. Cannot be used with text fields. Note that the ">=" operator can only be used with fields which support
+     * The "&gt;=" operator is used to search for issues where the value of the specified field is greater than or equal to the
+     * specified value. Cannot be used with text fields. Note that the "&gt;=" operator can only be used with fields which support
      * ordering (e.g. date fields and version fields). To see a field's supported operators, check the individual field reference.
      */
-    GREATER_THAN_EQUALS(">="),
+    GREATER_THAN_EQUALS("&gt;="),
 
     /**
-     * The "<" operator is used to search for issues where the value of the specified field is less than the specified value.
-     * Cannot be used with text fields.Note that the "<" operator can only be used with fields which support ordering (e.g. date fields and version fields).
+     * The "&lt;" operator is used to search for issues where the value of the specified field is less than the specified value.
+     * Cannot be used with text fields.Note that the "&lt;" operator can only be used with fields which support ordering (e.g. date fields and version fields).
      * To see a field's supported operators, check the individual field reference.
      */
-    LESS_THAN("<"),
+    LESS_THAN("&lt;"),
 
     /**
-     * The "<=" operator is used to search for issues where the value of the specified field is less than or equal to than the
-     * specified value. Cannot be used with text fields. Note that the "<=" operator can only be used with fields which support
+     * The "&lt;=" operator is used to search for issues where the value of the specified field is less than or equal to than the
+     * specified value. Cannot be used with text fields. Note that the "&lt;=" operator can only be used with fields which support
      * ordering (e.g. date fields and version fields). To see a field's supported operators, check the individual field reference.
      */
-    LESS_THAN_EQUALS("<="),
+    LESS_THAN_EQUALS("&lt;="),
 
     /**
      * The "IN" operator is used to search for issues where the value of the specified field is one of multiple specified values. The
@@ -89,20 +89,24 @@ public enum EOperator {
     /**
      * The "~" operator is used to search for issues where the value of the specified field matches the specified value (either an exact match or
      * a "fuzzy" match — see examples below). For use with text fields only, i.e.:
+     * <ol>
      * <li>Summary</li>
      * <li>Description</li>
      * <li>Environment</li>
      * <li>Comments</li>
+     * </ol>
      */
     CONTAINS("~"),
 
     /**
      * The "!~" operator is used to search for issues where the value of the specified field is not a "fuzzy" match for the specified value.
      * For use with text fields only, i.e.:
+     * <ol>
      * <li>Summary</li>
      * <li>Description</li>
      * <li>Environment</li>
      * <li>Comments</li>
+     * </ol>
      */
     DOES_NOT_CONTAIN("!~"),
 
@@ -121,11 +125,13 @@ public enum EOperator {
     /**
      * The "WAS" operator is used to find issues that currently have, or previously had, the specified value for the specified field.
      * This operator has the following optional predicates:
+     * <ol>
      * <li>AFTER "date"</li>
      * <li>BEFORE "date"</li>
      * <li>BY "username"</li>
      * <li>DURING ("date1","date2")</li>
      * <li>ON "date"</li>
+     * </ol>
      * <br>
      * This operator will match the value name (e.g. "Resolved"), which was configured in your system at the time that the field was changed.
      * This operator will also match the value ID associated with that value name too — that is, it will match "4" as well as "Resolved".
@@ -137,11 +143,13 @@ public enum EOperator {
      * The "WAS IN" operator is used to find issues that currently have, or previously had, any of multiple specified values for the specified field.
      * The values are specified as a comma-delimited list, surrounded by parentheses. Using "WAS IN" is equivalent to using multiple WAS statements,
      * but is shorter and more convenient. That is, typing status WAS IN ('Resolved', 'Closed') is the same as typing status WAS "Resolved" OR status WAS "Closed".
+     * <ol>
      * <li>AFTER "date"</li>
      * <li>BEFORE "date"</li>
      * <li>BY "username"</li>
      * <li>DURING ("date1","date2")</li>
      * <li>ON "date"</li>
+     * </ol>
      * <br>
      * This operator will match the value name (e.g. "Resolved"), which was configured in your system at the time that the field was changed. This
      * operator will also match the value ID associated with that value name too — that is, it will match "4" as well as "Resolved". (Note: This
@@ -154,11 +162,13 @@ public enum EOperator {
      * Using "WAS NOT IN" is equivalent to using multiple WAS_NOT statements, but is shorter and more convenient. That is, typing status
      * WAS NOT IN ("Resolved","In Progress") is the same as typing status WAS NOT "Resolved" AND status WAS NOT "In Progress".
      * This operator has the following optional predicates:
+     * <ol>
      * <li>AFTER "date"</li>
      * <li>BEFORE "date"</li>
      * <li>BY "username"</li>
      * <li>DURING ("date1","date2")</li>
      * <li>ON "date"</li>
+     * </ol>
      * <br>
      * This operator will match the value name (e.g. "Resolved"), which was configured in your system at the time that the field was changed.
      * This operator will also match the value ID associated with that value name too — that is, it will match "4" as well as "Resolved".
@@ -169,11 +179,13 @@ public enum EOperator {
     /**
      * The "WAS NOT" operator is used to find issues that have never had the specified value for the specified field.
      * This operator has the following optional predicates:
+     * <ol>
      * <li>AFTER "date"</li>
      * <li>BEFORE "date"</li>
      * <li>BY "username"</li>
      * <li>DURING ("date1","date2")</li>
      * <li>ON "date"</li>
+     * </ol>
      * <br>
      * This operator will match the value name (e.g. "Resolved"), which was configured in your system at the time that the field was changed.
      * This operator will also match the value ID associated with that value name too — that is, it will match "4" as well as "Resolved".
@@ -184,6 +196,7 @@ public enum EOperator {
     /**
      * The "CHANGED" operator is used to find issues that have a value which had changed for the specified field.
      * This operator has the following optional predicates:
+     * <ol>
      * <li>AFTER "date"</li>
      * <li>BEFORE "date"</li>
      * <li>BY "username"</li>
@@ -191,6 +204,7 @@ public enum EOperator {
      * <li>ON "date"</li>
      * <li>FROM "oldvalue"</li>
      * <li>TO "newvalue"</li>
+     * </ol>
      * <br>
      * (Note: This operator can be used with the Assignee, Fix Version, Priority, Reporter, Resolution and Status fields only.)
      */

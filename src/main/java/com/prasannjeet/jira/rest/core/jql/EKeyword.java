@@ -26,19 +26,23 @@ public enum EKeyword {
     /**
      * Used to combine multiple clauses, allowing you to refine your search.
      * <p>Examples:
+     * <ol>
      * <li>project = "New office" and status = "open"
      * <li>status = open and priority = urgent and assignee = jsmith
      * <li>project = JRA and assignee != jsmith
      * <li>project in (JRA,CONF) and fixVersion = "3.14"
      * <li>reporter not in (Jack,Jill,John) and assignee not in (Jack,Jill,John)
+     * </ol>
      */
     AND("and"),
 
     /**
      * Used to combine multiple clauses, allowing you to expand your search.
      * <p>Examples:
+     * <ol>
      * <li>reporter = jsmith or reporter = jbrown
-     * <li>duedate < now() or duedate is empty
+     * <li>duedate &lt; now() or duedate is empty
+     * </ol>
      */
     OR("or"),
 
@@ -46,33 +50,41 @@ public enum EKeyword {
      * Used to negate individual clauses or a complex JQL query (a query made up of more than one clause)
      * using parentheses, allowing you to refine your search.
      * <p>Examples:
+     * <ol>
      * <li>not assignee = jsmith
      * <li>not (reporter = jsmith or reporter = jbrown)
+     * </ol>
      */
     NOT("not"),
 
     /**
      * Used to search for issues where a given field does not have a value.
      * <p>Examples:
+     * <ol>
      * <li>duedate = empty
      * <li>duedate is empty
+     * </ol>
      */
     EMPTY("empty"),
 
     /**
      * Used to search for issues where a given field does not have a value.
      * <p>Examples:
+     * <ol>
      * <li>duedate = null
      * <li>duedate is null
+     * </ol>
      */
     NULL("null"),
 
     /**
      * Used to specify the fields by whose values the search results will be sorted.
      * <p>Examples:
+     * <ol>
      * <li>duedate = empty order by created
      * <li>duedate = empty order by created, priority desc
      * <li>duedate = empty order by created, priority asc
+     * </ol>
      */
     ORDER_BY("order by");
 

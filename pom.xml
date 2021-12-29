@@ -23,10 +23,15 @@
     <version>1.0</version>
     <packaging>jar</packaging>
 
+    <name>Jira Rest Client</name>
+    <description>A Java Library that implements REST API of JIRA</description>
+    <url>https://github.com/prasannjeet/JiraRestClient</url>
+
     <properties>
         <httpclient.version>4.5.13</httpclient.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <project.version>1.0</project.version>
     </properties>
 
     <organization>
@@ -45,6 +50,11 @@
             <email>prasannjeetsingh@gmail.com</email>
         </developer>
     </developers>
+    <scm>
+        <connection>scm:git:git://github.com/prasannjeet/JiraRestClient.git</connection>
+        <developerConnection>scm:git:ssh://github.com/prasannjeet/JiraRestClient.git</developerConnection>
+        <url>http://github.com/prasannjeet/JiraRestClient/tree/master</url>
+    </scm>
 
     <dependencies>
         <dependency>
@@ -141,23 +151,25 @@
                 </configuration>
             </plugin>
 <!--Javadoc Plugin-->
-<!--            <plugin>-->
-<!--                <groupId>org.apache.maven.plugins</groupId>-->
-<!--                <artifactId>maven-javadoc-plugin</artifactId>-->
-<!--                &lt;!&ndash; set encoding to utf-8 to avoid encoding issues with special characters &ndash;&gt;-->
-<!--                <configuration>-->
-<!--                    <encoding>utf-8</encoding>-->
-<!--                </configuration>-->
-<!--                <version>2.9.1</version>-->
-<!--                <executions>-->
-<!--                    <execution>-->
-<!--                        <id>attach-javadocs</id>-->
-<!--                        <goals>-->
-<!--                            <goal>jar</goal>-->
-<!--                        </goals>-->
-<!--                    </execution>-->
-<!--                </executions>-->
-<!--            </plugin>-->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <!-- set encoding to utf-8 to avoid encoding issues with special characters -->
+                <configuration>
+                    <source>8</source>
+                    <detectJavaApiLink>false</detectJavaApiLink>
+                    <encoding>utf-8</encoding>
+                </configuration>
+                <version>2.9.1</version>
+                <executions>
+                    <execution>
+                        <id>attach-javadocs</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
 <!--GPG Signed Plugin-->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -173,7 +185,18 @@
                     </execution>
                 </executions>
             </plugin>
-
+<!-- Maven Release Plugin -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-release-plugin</artifactId>
+                <version>2.5.3</version>
+                <configuration>
+                    <autoVersionSubmodules>true</autoVersionSubmodules>
+                    <useReleaseProfile>false</useReleaseProfile>
+                    <releaseProfiles>release</releaseProfiles>
+                    <goals>deploy</goals>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
 </project>

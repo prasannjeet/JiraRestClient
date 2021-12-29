@@ -78,11 +78,16 @@ public class JiraRestClient implements RestParamConstants, RestPathConstants {
     /**
      * Builds and configures a new client connection to JIRA.
      *
-     * @param uri      = the login mask URI where JIRA is running
-     * @param username = login name
-     * @param password = login password
-     * @return 200 succees, 401 for wrong credentials and 403 for captcha is needed, you have to login at the jira website
-     * @throws com.prasannjeet.jira.rest.core.util.RestException
+     * @param uri       = the login mask URI where JIRA is running
+     * @param username  = login name
+     * @param password  = login password
+     * @param proxyHost = proxy host
+     * @return          = 200 succees, 401 for wrong credentials and 403 for captcha is needed, you have to login
+     *                    at the jira website
+     * @throws IOException
+     * @throws URISyntaxException
+     * @throws ExecutionException
+     * @throws InterruptedException
      */
     public int connect(URI uri, String username, String password, HttpHost proxyHost) throws IOException, URISyntaxException, ExecutionException, InterruptedException {
         this.username = username;

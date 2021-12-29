@@ -19,9 +19,9 @@ import org.apache.commons.lang3.StringUtils;
 
 /**
  * JQL builder
- * <p/>
- * <p>JQL condition = ( field + operator + operand ) + JqlKeyword + ...
- * <p>Example: ( PROJECT = DEMO ) + AND ...
+ * <p></p>
+ * <p>JQL condition = ( field + operator + operand ) + JqlKeyword + ...</p>
+ * <p>Example: ( PROJECT = DEMO ) + AND ...</p>
  *
  * @author Christian Schulze
  * @author Vitali Filippow
